@@ -16,14 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from comments.views import CommentViewSet
+from comments.views import CommentViewSet, retrieve_random_comment_by_path, retrieve_random_comment
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 router = routers.DefaultRouter()
-router.register(r'comments', CommentViewSet)
+router.register(r"comments", CommentViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
+    path("api/random-comment-by-path/<str:path>/", retrieve_random_comment_by_path),
+    path("api/random-comment/", retrieve_random_comment),
 ]
 urlpatterns += staticfiles_urlpatterns()
