@@ -1,9 +1,10 @@
 import rest_framework
+from rest_framework import serializers
 from rest_framework.decorators import api_view, permission_classes
 from .models import Comment
 from rest_framework import views, viewsets
 from rest_framework.response import Response
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from .serializers import CommentSerializer
 from rest_framework import permissions
 from random import randint
@@ -14,6 +15,20 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [permissions.AllowAny]
+
+
+class RandomCommentsByPath(viewsets.GenericViewSet, ListAPIView):
+
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self, *args, **kwargs):
+        path = self.kwargs.get("path")
+        parsed_path = path.replace("%2F", "/")
+        qs = Comment.objects.filter(path=parsed_path)
+        return qs.order_by("?")
+    
 
 
 @api_view(http_method_names=["GET"])
