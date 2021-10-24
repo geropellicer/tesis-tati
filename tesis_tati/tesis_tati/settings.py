@@ -27,24 +27,23 @@ SECRET_KEY = "django-insecure-&1s0-4kbgm9b$x(j(y#pk!_6^&6etyddoyv%3uko4)$zqj33+x
 DEBUG = True
 
 ALLOWED_HOSTS = ["51.222.14.183", "localhost"]
-CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
-    "django.contrib.contenttypes",
+"django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # third party
+    "corsheaders",
+    "rest_framework",
     # own
     "comments",
     "users",
     "common",
-    # third party
-    "rest_framework",
-    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -138,3 +137,6 @@ REST_FRAMEWORK = {"DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNum
 
 # All settings common to all environments
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS=['*']    
