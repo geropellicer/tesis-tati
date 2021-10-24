@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ["51.222.14.183", "localhost"]
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
-"django.contrib.contenttypes",
+    "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
@@ -139,4 +139,17 @@ REST_FRAMEWORK = {"DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNum
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS=['*']    
+ALLOWED_HOSTS = ["*"]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "TFA-Device-uuid",
+]
