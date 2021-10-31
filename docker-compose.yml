@@ -1,0 +1,47 @@
+version: "3.2"
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: tesistati/api
+    container_name: tesistati-api
+    env_file:
+      - ./.env
+    volumes:
+      - .:/code
+      - /etc/letsencrypt/archive/tesistati.ddns.net/:/ssl/
+      - ./staticfiles:/code/staticfiles
+      - ./media:/code/media
+    restart: unless-stopped
+    expose:
+      - 8002
+    command: bash -c "pwd && ls && python manage.py collectstatic --no-input && python manage.py migrate && gunicorn --timeout=120 --certfile=/ssl/fullchain1.pem --keyfile=/ssl/privkey1.pem --ssl-version=3 --workers=3 tesistati.wsgi -b 0.0.0.0:8002"
+    networks:
+      - tesis
+
+  nginx:
+    build: ./nginx
+    container_name: tesistati-nginx
+    volumes:
+      - ./staticfiles:/code/staticfiles
+      - ./media:/code/media
+      - /etc/letsencrypt/archive/tesistati.ddns.net/:/ssl/
+      - ./nginx_logs/:/var/log/nginx/
+    ports:
+      - 443:443
+      - 80:80
+    depends_on:
+      - web
+    restart: unless-stopped    
+    networks:
+      - tesis
+
+volumes:
+  pgdata:
+  media:
+  static:
+  static_volume:
+
+networks:
+  tesis:

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from posixpath import normpath
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -153,3 +154,11 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
     "TFA-Device-uuid",
 ]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+STATIC_URL = "/staticfiles/"
+STATICFILES_DIRS = (normpath(os.path.join(BASE_DIR, "templates")),)
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
