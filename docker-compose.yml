@@ -1,5 +1,16 @@
 version: "3.2"
 services:
+  db: &db
+    container_name: tesistati-db
+    image: postgres
+    restart: on-failure
+    healthcheck:
+      test: "exit 0"
+    volumes:
+      - pgdata:/var/lib/postgresql
+    env_file:
+      - .env
+
   web:
     build:
       context: ./
