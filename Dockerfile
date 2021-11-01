@@ -18,6 +18,6 @@ COPY . ${APP_HOME}/
 RUN pipenv install --system
 
 # Copy entrypoint
-COPY ./entrypoint.sh ./entrypoint.sh
+# COPY ./entrypoint.sh ./entrypoint.sh
 
-ENTRYPOINT ["/code/entrypoint.sh"]
+# ENTRYPOINT ["/code/entrypoint.sh"]

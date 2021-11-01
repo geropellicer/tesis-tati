@@ -10,6 +10,7 @@ markdown = "*"
 django-filter = "*"
 gunicorn = "*"
 django-cors-headers = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 black = "*"
