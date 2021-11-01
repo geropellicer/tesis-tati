@@ -163,6 +163,5 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_URL = "/staticfiles/"
-STATICFILES_DIRS = (normpath(os.path.join(BASE_DIR, "templates")),)
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
