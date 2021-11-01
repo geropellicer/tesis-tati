@@ -26,8 +26,8 @@ services:
       - ./media:/code/media
     restart: unless-stopped
     expose:
-      - 8002
-    command: bash -c "pwd && ls && python manage.py collectstatic --no-input && python manage.py migrate && gunicorn --timeout=120 --certfile=/ssl/fullchain1.pem --keyfile=/ssl/privkey1.pem --ssl-version=3 --workers=3 tesistati.wsgi -b 0.0.0.0:8002"
+      - 8000
+    command: bash -c "pwd && ls && python manage.py collectstatic --no-input && python manage.py migrate && gunicorn --timeout=120 --certfile=/ssl/fullchain1.pem --keyfile=/ssl/privkey1.pem --ssl-version=3 --workers=3 tesistati.wsgi -b 0.0.0.0:8000"
     networks:
       - tesis
 

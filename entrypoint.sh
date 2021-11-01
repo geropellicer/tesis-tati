@@ -27,7 +27,7 @@ then
     then
         workers="12"
     fi
-    exec gunicorn tesistati.wsgi:application --bind 0.0.0.0:8002 --workers $workers
+    exec gunicorn tesistati.wsgi:application --bind 0.0.0.0:8000 --workers $workers
 elif [ $1 = "runtests" ]
 then
     exec python manage.py test
