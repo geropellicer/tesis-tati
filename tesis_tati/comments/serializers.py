@@ -13,9 +13,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user_data = validated_data.pop("user")
-        user, created = Usuario.objects.get_or_create(
-            email=user_data["email"], defaults={"nombre": user_data["nombre"], "apellido": user_data["apellido"]}
-        )
+        user, created = Usuario.objects.get_or_create(nombre=user_data["nombre"])
 
         comment = Comment.objects.create(user=user, text=validated_data["text"], path=validated_data["path"])
 

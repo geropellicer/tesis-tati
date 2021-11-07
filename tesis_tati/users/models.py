@@ -5,11 +5,9 @@ from common.models import BaseModel
 
 class Usuario(BaseModel):
     nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
 
     def __str__(self) -> str:
-        return self.nombre + " " + self.apellido + " - (" + self.email + ")"
+        return self.nombre + " (" + str(self.pk) + ") "
 
     class Meta:
         verbose_name = "usuario"
