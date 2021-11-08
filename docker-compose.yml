@@ -43,6 +43,7 @@ services:
       - ./media:/code/media
       - /etc/letsencrypt/archive/tesistati.ddns.net/:/ssl/
       - ./nginx_logs/:/var/log/nginx/
+      - ./front:/front
     ports:
       - 443:443
       - 80:80
