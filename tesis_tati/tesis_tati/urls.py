@@ -23,10 +23,10 @@ router = routers.DefaultRouter()
 router.register(r"comments", CommentViewSet)
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/", include(router.urls)),
-    path("api/random-comment-by-path/<str:path>/", retrieve_random_comment_by_path),
-    path("api/random-comments-by-path/<str:path>/", RandomCommentsByPath.as_view({'get': 'list'})),
-    path("api/random-comment/", retrieve_random_comment),
+    path("server/admin/", admin.site.urls),
+    path("server/api/", include(router.urls)),
+    path("server/api/random-comment-by-path/<str:path>/", retrieve_random_comment_by_path),
+    path("server/api/random-comments-by-path/<str:path>/", RandomCommentsByPath.as_view({'get': 'list'})),
+    path("server/api/random-comment/", retrieve_random_comment),
 ]
 urlpatterns += staticfiles_urlpatterns()
